@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+</head>
+<body>
+    <h1>This is the Index page</h1>
+    here are the links to the pages
+
+    <a href="/">home</a>
+    <a href="/create">create</a>
+    <a href="/login">login</a>
+    <a href="/register">register</a>
+    <a href="/logout">logout</a>
+
+
+    <% for(i=0; i<tasks.length; i++) {%>
+        <div>
+            <h3><%= i %>Task name</h3>
+            <p><%= tasks[i].taskName %></p>
+            <h3>Task description</h3>
+            <p><%= tasks[i].description %></p>
+            <h3>Task due date</h3>
+            <p><%= tasks[i].dueDate %></p>
+
+        </div>
+        
+    <% } %>
+</body>
+</html>
