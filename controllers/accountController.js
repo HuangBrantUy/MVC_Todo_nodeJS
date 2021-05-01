@@ -37,8 +37,30 @@ exports.create_get = (req,res)=>{
 
 exports.logout_get = (req,res) =>{
     res.cookie('user', '', {maxAge: 1});
+    res.redirect('/login');
+}
+
+exports.updateTask_get = async (req,res) => {
+    let data = await task.model.findByPk(
+        req.params.id,
+        {raw :true} //passes just the raw data
+    )
+
+   res.locals.tasks = data;
+   res.render('updateTask');
+}
+
+exports.deleteTask_get = async (req,res) => {
+    let data = await task.model.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+
+    console.log(data);
     res.redirect('/');
 }
+
 
 //end of get requests
 
@@ -104,27 +126,34 @@ exports.create_post = async (req, res) => {
 }
 
 
-exports.deleteTask = async (req,res) => {
-    let data = await task.model.destroy({
-        where: {
-            id: req.params.id
-        }
-    })
+exports.updateTask_post = async (req, res)=>{
+    let data = await task.model.update(
+        {taskName : req.body.taskName,
+         description: req.body.description,
+         dueDate : req.body.dueDate
+        },
 
-    console.log(data);
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    )
+
     res.redirect('/');
 }
 
 
 
+
 //additional code (No use yet)
 exports.readAccount = async (req,res) => {
-    let data = await account.model.findByPk(
+   let data = await account.model.findByPk(
         req.body.id,
         {raw :true} //passes just the raw data
     )
 
-   res.send(data);
+   res.send(data); 
 }
 
 exports.updateAccount = async (req, res)=>{
