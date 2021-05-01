@@ -19,13 +19,14 @@
 
     <% for(i=0; i<tasks.length; i++) {%>
         <div>
-            <h3><%= i %>Task name</h3>
-            <p><%= tasks[i].taskName %></p>
+            <h3><%= i %>Task name</h3>  
+            <p><%= tasks[i].taskName %></p> <a href="/deleteTask/<%= tasks[i].id %>">Delete</a>
             <h3>Task description</h3>
             <p><%= tasks[i].description %></p>
             <h3>Task due date</h3>
             <p><%= tasks[i].dueDate %></p>
 
+            
         </div>
         
     <% } %>

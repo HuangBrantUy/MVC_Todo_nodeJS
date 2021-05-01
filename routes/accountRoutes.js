@@ -10,6 +10,8 @@ router.get("/login", auth.cookieMonster ,accountController.login_get);
 router.get("/register", auth.cookieMonster ,accountController.register_get);
 router.get("/create", auth.guardSaTC ,accountController.create_get);
 router.get("/logout", accountController.logout_get);
+router.get("/deleteTask/:id", accountController.deleteTask); //the post request does not work
+
 
 //post routes
 router.post("/register", accountController.register_post);
@@ -20,9 +22,10 @@ router.post("/create", accountController.create_post);
 
 
 
+
 router.get("/read_account", auth.checking, accountController.readAccount);
 router.post("/update_account", accountController.updateAccount);
-router.post("/delete_ account", accountController.deleteAccount);
+router.post("/delete_account", accountController.deleteAccount);
 
 
 module.exports = router;

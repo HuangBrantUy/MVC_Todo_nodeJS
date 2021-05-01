@@ -104,6 +104,17 @@ exports.create_post = async (req, res) => {
 }
 
 
+exports.deleteTask = async (req,res) => {
+    let data = await task.model.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+
+    console.log(data);
+    res.redirect('/');
+}
+
 
 
 //additional code (No use yet)
